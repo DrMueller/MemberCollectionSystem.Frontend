@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateComponent } from './create/components';
 import { EntryPointComponent } from './entry-point/entry-point.component';
-import { OverviewComponent } from './overview';
+import { OverviewComponent } from './overview/components/overview.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: 'overview',
         component: OverviewComponent
+      },
+      {
+        path: 'create',
+        component: CreateComponent
       }
     ]
   }

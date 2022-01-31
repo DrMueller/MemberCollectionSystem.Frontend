@@ -10,8 +10,8 @@ import { TableTemplateBaseComponent } from '../table-base-template';
 export class ButtonTemplateComponent extends TableTemplateBaseComponent {
 
   @Output() public buttonClick: EventEmitter<string | undefined> = new EventEmitter<string | undefined>();
-  @Input() public materialColor: string;
-  @Input() public materialIcon: string;
+  @Input() public materialColor!: string;
+  @Input() public materialIcon!: string;
 
   public click(event: any): void {
     const rowId = super.tryFetchingRowId(event);

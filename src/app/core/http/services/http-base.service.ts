@@ -26,7 +26,7 @@ export abstract class HttpBaseService {
     return this.httpClient.get<T>(completeUrl, requestOptions);
   }
 
-  public post<T>(relativeUrl: string, body: any): Observable<T> {
+  public post$<T>(relativeUrl: string, body: any): Observable<T> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
 
     const requestOptions = this.createOptions();

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 import { ValidationError } from '../models';
 
@@ -15,7 +15,7 @@ export class RxFormControlValidationService {
   public constructor(@Inject(VALIDATION_ERROR_MAPPER_TOKEN) private validationErrorMappers: IValidationErrorMapperService[]) {
   }
 
-  public validateFormControl(formControl: FormControl): ValidationError[] {
+  public validateFormControl(formControl: AbstractControl): ValidationError[] {
     if (this.checkIfFormControlIsValid(formControl)) {
       return [];
     }
@@ -39,7 +39,7 @@ export class RxFormControlValidationService {
     return result;
   }
 
-  public checkIfFormControlIsValid(formControl: FormControl): boolean {
+  public checkIfFormControlIsValid(formControl: AbstractControl): boolean {
     return (!formControl.touched && !formControl.dirty) || formControl.valid;
   }
 }

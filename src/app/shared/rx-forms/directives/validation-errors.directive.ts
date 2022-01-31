@@ -1,5 +1,5 @@
 import { Directive, Input, Renderer2, ViewContainerRef } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 import { RxFormControlValidationService } from '../services';
 
@@ -7,7 +7,7 @@ import { RxFormControlValidationService } from '../services';
   selector: '[appValidationErrors]'
 })
 export class ValidationErrorsDirective {
-  private _formControlToValidate!: FormControl;
+  private _formControlToValidate!: AbstractControl;
 
   public constructor(
     private vcRef: ViewContainerRef,
@@ -15,7 +15,7 @@ export class ValidationErrorsDirective {
     private validator: RxFormControlValidationService) {
   }
 
-  @Input() public set appValidationErrors(formControl: FormControl) {
+  @Input() public set appValidationErrors(formControl: AbstractControl) {
     this._formControlToValidate = formControl;
     this._formControlToValidate.statusChanges.subscribe(validity => this.validate(validity));
   }

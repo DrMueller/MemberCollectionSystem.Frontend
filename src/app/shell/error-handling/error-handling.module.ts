@@ -10,9 +10,6 @@ import { CustomErrorHandlerService } from './services';
   declarations: [
     ErrorDisplayComponent
   ],
-  entryComponents: [
-    ErrorDisplayComponent
-  ],
   imports: [
     CommonModule,
     MatDependenciesModule

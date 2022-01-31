@@ -3,8 +3,9 @@ import {
   Component, EventEmitter, Input,
   OnInit, Output, ViewChild
 } from '@angular/core';
-import { MatPaginator, MatSort, MatTable, MatTableDataSource } from '@angular/material';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ColumnDefinitionsContainer, TableRowSelectionType } from '../../models/index';
 
 @Component({
@@ -14,18 +15,18 @@ import { ColumnDefinitionsContainer, TableRowSelectionType } from '../../models/
 })
 export class MatTableComponent<T> implements OnInit {
   @Output() public selectionChanged = new EventEmitter<T[]>();
-  @Input() public columnDefinitions: ColumnDefinitionsContainer;
-  @Input() public idSelector: keyof T;
-  @ViewChild(MatPaginator, { static: false }) public matPaginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) public matSort: MatSort;
-  @ViewChild(MatTable, { static: false }) public matTable: MatTable<T>;
+  @Input() public columnDefinitions!: ColumnDefinitionsContainer;
+  @Input() public idSelector!: keyof T;
+  @ViewChild(MatPaginator, { static: false }) public matPaginator!: MatPaginator;
+  @ViewChild(MatSort, { static: false }) public matSort!: MatSort;
+  @ViewChild(MatTable, { static: false }) public matTable!: MatTable<T>;
 
-  public searchText: string;
-  public selection: SelectionModel<T>;
-  private _data: T[];
+  public searchText!: string;
+  public selection!: SelectionModel<T>;
+  private _data!: T[];
 
-  private _dataSource: MatTableDataSource<T>;
-  private _rowSelectionType: TableRowSelectionType;
+  private _dataSource!: MatTableDataSource<T>;
+  private _rowSelectionType!: TableRowSelectionType;
 
   public get allColumnHeaders(): string[] {
     const result: string[] = [];

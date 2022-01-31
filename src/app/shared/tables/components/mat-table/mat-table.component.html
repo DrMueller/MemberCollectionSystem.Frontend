@@ -1,12 +1,10 @@
 <div *ngIf="columnDefinitions">
   <div class="flex-container">
-
     <div class="flex-item">
       <div class="top-area-container">
         <div class="top-area-item">
           <mat-form-field appearance="fill">
-
-            <mat-label>{{ 'shared.tables.components.mat-table.enterSearchText' | translate }}
+            <mat-label>'Enter searchtext'
             </mat-label>
             <input matInput [ngModel]="searchText" (ngModelChange)="searchTextChanged($event)">
             <mat-icon matSuffix>search</mat-icon>
@@ -27,7 +25,7 @@
             <ng-container matColumnDef="Select">
               <th mat-header-cell *matHeaderCellDef class="selected-row"
                 [class.header-multi-selection]="canToggleAllSelections" (click)="toggleAllSelections()">
-                {{ 'shared.tables.components.mat-table.selected' | translate }}</th>
+                Selected</th>
               <td mat-cell class="selected-row" *matCellDef="let row">
                 <mat-checkbox (click)="toggleRowSelection(row)" [checked]="isRowSelected(row)">
                 </mat-checkbox>
@@ -37,7 +35,7 @@
 
           <ng-container *ngFor="let colDef of columnDefinitions.definitions" [matColumnDef]="colDef.columnKey">
             <th mat-header-cell [ngClass]="colDef.className" *matHeaderCellDef mat-sort-header>
-              {{ colDef.headerTranslationKey | translate }}</th>
+              {{colDef.headerDescription}}</th>
             <ng-container *ngIf="colDef.propertyKey">
               <td mat-cell [ngClass]="colDef.className" *matCellDef="let row">{{ row[colDef.propertyKey] }}</td>
             </ng-container>

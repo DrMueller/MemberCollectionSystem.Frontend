@@ -6,9 +6,9 @@ export class TemplateColumnDefinition extends ColumnDefinitionBase {
   public constructor(
     headerKey: string,
     headerDescription: string,
-    public readonly template: TemplateRef<any>,
-    className?: string
+    template: TemplateRef<any>,
+    className: string = ''
   ) {
-    super(headerKey, headerDescription, className);
+    super(headerKey, headerDescription, className, null, template);
   }
 }

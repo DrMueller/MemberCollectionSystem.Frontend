@@ -1,17 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MemberAddressesRoutingModule } from '.';
-import { OverviewComponent } from './overview/overview.component';
+import { MemberAddressesRoutingModule, MemberAddressesServicesModule } from '.';
 import { EntryPointComponent } from './entry-point/entry-point.component';
+import { TablesModule } from 'src/app/shared/tables';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { MemberAddressesEffectsService, memberAddressesFeatureKey, memberAddressesReducer } from './common/state';
+import { OverviewComponent } from './overview/components/overview.component';
+import { CreateComponent } from './create/components';
+import { RxFormsModule } from 'src/app/shared/rx-forms';
 
 @NgModule({
   declarations: [
     OverviewComponent,
-    EntryPointComponent
+    EntryPointComponent,
+    CreateComponent
   ],
   imports: [
+    TablesModule,
+    RxFormsModule,
     CommonModule,
-    MemberAddressesRoutingModule
+    MemberAddressesServicesModule,
+    MemberAddressesRoutingModule,
+    StoreModule.forFeature(memberAddressesFeatureKey, memberAddressesReducer),
+    EffectsModule.forFeature([MemberAddressesEffectsService]),
   ]
 })
 export class MemberAddressesModule { }
