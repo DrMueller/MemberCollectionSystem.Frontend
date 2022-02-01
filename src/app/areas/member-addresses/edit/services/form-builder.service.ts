@@ -5,7 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   providedIn: 'root'
 })
 export class FormBuilderService {
+  // #region Constructors (1)
+
   public constructor(private formBuilder: FormBuilder) { }
+
+  // #endregion Constructors (1)
+
+  // #region Public Methods (1)
 
   public buildFormGroup(): FormGroup {
     return this.formBuilder.group({
@@ -13,4 +19,6 @@ export class FormBuilderService {
       houseNumber: [undefined, [Validators.required, Validators.min(1)]]
     });
   }
+
+  // #endregion Public Methods (1)
 }
