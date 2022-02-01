@@ -7,14 +7,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MemberAddressesEffectsService, memberAddressesFeatureKey, memberAddressesReducer } from './common/state';
 import { OverviewComponent } from './overview/components/overview.component';
-import { CreateComponent } from './create/components';
 import { RxFormsModule } from 'src/app/shared/rx-forms';
+import { EditComponent } from './edit/components';
 
 @NgModule({
   declarations: [
     OverviewComponent,
     EntryPointComponent,
-    CreateComponent
+    EditComponent
   ],
   imports: [
     TablesModule,

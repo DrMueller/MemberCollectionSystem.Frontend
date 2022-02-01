@@ -5,14 +5,6 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class RxFormGroupBindingService {
-  public bindToModel(formGroup: FormGroup, model: any) {
-    const controlKeys = Object.keys(formGroup.controls);
-
-    controlKeys.forEach(ck => {
-      model[ck] = <any>formGroup.controls[ck].value;
-    });
-  }
-
   public bindToFormGroup(model: any, formGroup: FormGroup) {
     const modelKeys = Object.keys(model);
 

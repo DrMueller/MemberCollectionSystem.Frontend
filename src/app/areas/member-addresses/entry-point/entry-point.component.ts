@@ -11,5 +11,4 @@ export class EntryPointComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

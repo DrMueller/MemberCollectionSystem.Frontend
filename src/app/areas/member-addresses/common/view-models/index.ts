@@ -1,1 +1,1 @@
-export * from './member-address-overview-entry';
+export * from './member-address-overview-entry.vm';

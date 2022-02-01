@@ -1,20 +1,11 @@
-import { createEntityAdapter, EntityAdapter, EntityState, Dictionary } from '@ngrx/entity';
-import { Action, createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import { MemberAddress, MemberAddressOverviewEntry } from '../models';
-import { createMemberAddresssSuccess, loadAllMemberAddressessSuccess } from './actions';
-
-export const memberAddressesFeatureKey = 'memberAddresses';
-
-const getFeatureState = createFeatureSelector<MemberAddressesState>(memberAddressesFeatureKey);
-
-export const selectOverview = createSelector(
-  getFeatureState,
-  state => Object.values(state.addresses.entities)
-    .map(e => new MemberAddressOverviewEntry(e!.id, `${e!.streetName} ${e!.houseNumber}`))
-);
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
+import { MemberAddress } from '../models';
+import { upsertMemberAddressSuccess, loadAllMemberAddressessSuccess, loadMemberAddressSuccess, setCurrentMemberAddressId } from './actions/member-address.actions';
 
 export interface MemberAddressesState {
-  addresses: EntityState<MemberAddress>
+  addresses: EntityState<MemberAddress>,
+  currentAddressId: number | undefined
 }
 
 export const adapter: EntityAdapter<MemberAddress> =
@@ -24,8 +15,9 @@ export const adapter: EntityAdapter<MemberAddress> =
   })
 
 export const initialState: MemberAddressesState = {
-  addresses: adapter.getInitialState()
-};
+  addresses: adapter.getInitialState(),
+  currentAddressId: undefined
+}
 
 export const memberAddressesReducer = createReducer(
   initialState,
@@ -38,11 +30,27 @@ export const memberAddressesReducer = createReducer(
       };
     }),
   on(
-    createMemberAddresssSuccess,
+    upsertMemberAddressSuccess,
     (state, action) => {
       return {
         ...state,
         addresses: adapter.addOne(action.adr, state.addresses)
+      }
+    }),
+  on(
+    setCurrentMemberAddressId,
+    (state, action) => {
+      return {
+        ...state,
+        currentAddressId: action.id
+      }
+    }),
+  on(
+    loadMemberAddressSuccess,
+    (state, action) => {
+      return {
+        ...state,
+        addresses: adapter.upsertOne(action.address, state.addresses)
       }
     })
 );

@@ -19,8 +19,8 @@ const reducers: ActionReducerMap<IAppState> = {
     StoreRouterConnectingModule.forRoot({ stateKey: routerFeatureKey }),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
-        // strictStateImmutability: true,
-        // strictActionImmutability: true,
+        strictStateImmutability: true,
+        strictActionImmutability: true,
       },
     }),
     StoreDevtoolsModule.instrument({

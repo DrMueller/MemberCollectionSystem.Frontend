@@ -8,19 +8,20 @@
 <mat-card class="mat-card">
   <mat-card-title>Overview</mat-card-title>
   <mat-card-content>
-    <app-mat-table [rowSelectionType]="1" [columnDefinitions]="columnDefinitions" idSelector="id"
+    <app-mat-table [rowSelectionType]="0" [columnDefinitions]="columnDefinitions" idSelector="id"
       [data]="overviewEntries">
-    </app-mat-table>
-    <!--
-    <ng-template #deleteTemplate>
-      <app-button-template materialIcon="delete_outline" materialColor="warn" (buttonClick)=deleteSession($event)>
-      </app-button-template>
-    </ng-template>
 
-    <ng-template #editTemplate>
-      <app-button-template materialIcon="edit" materialColor="primary" (buttonClick)=edit($event)>
-      </app-button-template>
-    </ng-template> -->
+      <ng-template #actions let-row="row">
+        <app-context-menu-template>
+          <div class="button">
+            <button mat-menu-item (click)="edit(row.id)">Edit</button>
+          </div>
+          <!-- <div class="button">
+            <button mat-menu-item (click)="delete(row.id)">Delete</button>
+          </div> -->
+        </app-context-menu-template>
+      </ng-template>
+    </app-mat-table>
 
   </mat-card-content>
 </mat-card>

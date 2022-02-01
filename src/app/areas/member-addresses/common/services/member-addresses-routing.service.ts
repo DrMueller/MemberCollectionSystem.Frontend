@@ -8,12 +8,12 @@ export class MemberAddressesRoutingService {
 
   constructor(private readonly router: Router) { }
 
-  public toOverview(): void{
+  public toOverview(): void {
     this.navigateTo('overview');
   }
 
-  public toCreate(): void {
-    this.navigateTo('create');
+  public toEdit(id: number): void {
+    this.navigateTo(id.toString());
   }
 
   private navigateTo(...urlParts: any[]): void {

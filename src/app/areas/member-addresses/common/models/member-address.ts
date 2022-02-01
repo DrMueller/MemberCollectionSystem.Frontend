@@ -1,5 +1,5 @@
 export interface MemberAddress {
-  id: number,
+  id: number;
   streetName: string;
-  houseNumber: number;
+  houseNumber?: number;
 }

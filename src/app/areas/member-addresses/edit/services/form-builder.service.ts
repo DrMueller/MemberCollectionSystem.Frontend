@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MemberAddressesModule } from '../..';
 
 @Injectable({
   providedIn: 'root'

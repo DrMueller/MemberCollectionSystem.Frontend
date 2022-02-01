@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Dictionary } from '@ngrx/entity';
-import { select, Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
-import { MemberAddress, MemberAddressOverviewEntry } from '../models';
+import { Observable } from 'rxjs';
+import { MemberAddress } from '../models';
 import { MemberAddressesHttpService } from './http';
-import { MemberAddressesState, selectOverview } from '../state/member-addresses.reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +14,11 @@ export class MemberAddressesRepositoryService {
     return this.httpService.get$<MemberAddress[]>('');
   }
 
-  public create$(entry: MemberAddress): Observable<MemberAddress> {
-    return this.httpService.post$<MemberAddress>('', entry);
+  public load$(id: number): Observable<MemberAddress> {
+    return this.httpService.get$<MemberAddress>(id);
+  }
+
+  public upsert$(entry: MemberAddress): Observable<MemberAddress> {
+    return this.httpService.put$<MemberAddress>('', entry);
   }
 }
